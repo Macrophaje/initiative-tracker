@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class ActivePlayer extends React.Component {
-	constructor() {
-		super();
-	}
+
 	render(){
-		return <div></div>;
+		return (
+			<div>
+				<p>{this.props.player.name}</p>
+				<p>{this.props.player.initiative}</p>
+			</div>
+		)
 	}
 }
 

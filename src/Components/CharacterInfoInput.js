@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //Component for user to define each character
 class CharacterInfoInput extends React.Component {

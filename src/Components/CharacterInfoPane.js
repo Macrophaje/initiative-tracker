@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CharacterInfoInput from './CharacterInfoInput.js';
 import CharacterInfoCard from './CharacterInfoCard';
 
@@ -26,10 +26,6 @@ class CharacterInfoPane extends React.Component {
 		this.props.handleChange(cardState);
 	}
 
-	startCombat() {
-		this.props.startComabt();
-	}
-	
 	//Render the input cards
   	renderInputCard() {		
     	return (
@@ -59,7 +55,7 @@ class CharacterInfoPane extends React.Component {
 				<div>
 					{this.renderInputCard()}
 				</div>
-				<button onClick={this.startCombat}>Start Combat</button>
+				
 			</div>
     	);
   	}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //Displays the details of a character, allows the user to enter their roll and calculates final initiative
 class CharacterInfoCard extends React.Component {
@@ -22,8 +22,8 @@ class CharacterInfoCard extends React.Component {
 	
 	//Calculates the final initiative
 	handleClick() {
-		var mod = parseInt(this.state.modifier);
-		var roll = parseInt(this.state.roll);
+		var mod = parseInt(this.state.modifier, 10);
+		var roll = parseInt(this.state.roll, 10);
 		//Don't allow user to submit an impossible roll
 		if(roll < 1 || roll > 20) {
 			return;

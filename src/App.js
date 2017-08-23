@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import CharacterInfoPane from './Components/CharacterInfoPane.js';
 import CombatOrderPane from './Components/CombatOrderPane.js';
@@ -9,9 +8,11 @@ class MainApp extends React.Component {
     super();
     this.state = {
       characterData : [],
+      sortedCharacters : [],
     }
     
     this.handleChange = this.handleChange.bind(this);
+    this.renderCombatOrder = this.renderCombatOrder.bind(this);
   }
   
   //Handles all character data changes 
@@ -34,8 +35,40 @@ class MainApp extends React.Component {
     }
   }
 
+  determineCombatOrder(characters){
+    var sortedCharacters = characters.slice();
+    function compareInitiative(a,b) {
+      if (a.initiative > b.initiative) {
+        return -1;
+      } else if ( a.initiative < b.initiative) {
+        return 1;
+      } else if (a.initiative === b.initiative) {
+        if (a.modifier > b.modifer) {
+          return -1;
+        } else if (a.modifer < b.modifer) {
+          return 1;
+        }
+      }
+      return 0;
+    }
+    return sortedCharacters.sort(compareInitiative);  
+  }
+
+  renderCombatOrder(){
+    var sortedCharacters = this.determineCombatOrder(this.state.characterData);
+    this.setState({sortedCharacters : sortedCharacters});
+  }
+
   
   render() {
+    const combatOrderState = () => {
+      return(
+        <CombatOrderPane 
+          sortedCharacters = {this.sortedCharacters}
+        />
+      )
+    }
+
     return (
       <div className="container">
         <div className="characterInfo">
@@ -43,9 +76,10 @@ class MainApp extends React.Component {
             characterData = {this.state.characterData}
             handleChange = {this.handleChange}
           />
+          <button onClick={this.renderCombatOrder}>Start Combat</button>
         </div>
-        <div className="combarOrder">
-          <CombatOrderPane />
+        <div className="combatOrder">
+          {combatOrderState}
         </div>
       </div>
     )
