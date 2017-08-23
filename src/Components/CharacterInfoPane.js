@@ -4,7 +4,7 @@ import CharacterInfoCard from './CharacterInfoCard';
 
 class CharacterInfoPane extends React.Component {
   constructor(props){
-    super();
+    super(props);
 	this.componentWillReceiveProps(props)
 	this.handleSubmit = this.handleSubmit.bind(this);
 	this.handleChange = this.handleChange.bind(this);
@@ -43,6 +43,7 @@ class CharacterInfoPane extends React.Component {
 					name = {character.name}
 					modifier = {character.modifier}
 					handleChange = {this.handleChange}
+					key = {character.name}
 				/>
 			);
 		});

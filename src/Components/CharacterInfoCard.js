@@ -3,7 +3,7 @@ import React from 'react';
 //Displays the details of a character, allows the user to enter their roll and calculates final initiative
 class CharacterInfoCard extends React.Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
 			name : props.name,
 			modifier : props.modifier,
@@ -30,8 +30,12 @@ class CharacterInfoCard extends React.Component {
 		}
 		
 		var initiative = mod + roll;
-		this.setState({initiative:initiative}, function(){
-									this.submitInitiative()});
+		this.setState({
+			initiative:initiative}, 
+			function(){
+				this.submitInitiative()
+			}
+		);
 	}
 	
 	//Sends the calculated initiative to the parent component

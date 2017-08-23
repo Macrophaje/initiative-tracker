@@ -9,10 +9,12 @@ class MainApp extends React.Component {
     this.state = {
       characterData : [],
       sortedCharacters : [],
+      renderCombat : false,
     }
     
     this.handleChange = this.handleChange.bind(this);
-    this.renderCombatOrder = this.renderCombatOrder.bind(this);
+    this.determineCombatOrder = this.determineCombatOrder.bind(this);
+    this.endCombat = this.endCombat.bind(this);
   }
   
   //Handles all character data changes 
@@ -35,7 +37,18 @@ class MainApp extends React.Component {
     }
   }
 
-  determineCombatOrder(characters){
+  determineCombatOrder(){
+    if (this.state.characterData.length < 1 || this.state.renderCombat === true) {
+      return;
+    }
+    var sortedCharacters = this.sortCharacters(this.state.characterData);
+    this.setState({
+      sortedCharacters : sortedCharacters,
+      renderCombat : true,
+    });
+  }
+
+  sortCharacters(characters){
     var sortedCharacters = characters.slice();
     function compareInitiative(a,b) {
       if (a.initiative > b.initiative) {
@@ -54,21 +67,23 @@ class MainApp extends React.Component {
     return sortedCharacters.sort(compareInitiative);  
   }
 
-  renderCombatOrder(){
-    var sortedCharacters = this.determineCombatOrder(this.state.characterData);
-    this.setState({sortedCharacters : sortedCharacters});
-  }
-
-  
-  render() {
-    const combatOrderState = () => {
-      return(
-        <CombatOrderPane 
-          sortedCharacters = {this.sortedCharacters}
-        />
+  renderCombatPane() {
+    if (this.state.renderCombat) {
+      return (
+          <CombatOrderPane 
+            sortedCharacters = {this.state.sortedCharacters}
+          />
       )
     }
+  }
 
+  endCombat() {
+    if(this.state.renderCombat) {
+      this.setState({renderCombat : false});
+    } 
+  }
+  
+  render() {
     return (
       <div className="container">
         <div className="characterInfo">
@@ -76,10 +91,13 @@ class MainApp extends React.Component {
             characterData = {this.state.characterData}
             handleChange = {this.handleChange}
           />
-          <button onClick={this.renderCombatOrder}>Start Combat</button>
+        </div>
+        <div className="controlButtons">
+          <button onClick={this.determineCombatOrder}>Start Combat</button>
+          <button onClick={this.endCombat}>End Combat</button>
         </div>
         <div className="combatOrder">
-          {combatOrderState}
+          {this.renderCombatPane()}
         </div>
       </div>
     )

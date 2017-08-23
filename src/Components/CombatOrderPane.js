@@ -3,46 +3,49 @@ import ActivePlayer from './ActivePlayer';
 
 class CombatOrderPane extends React.Component {
 	constructor(props){
-		super();
-		this.state = {
-			sortedCharacters : props.sortedCharacters,
-			turn : 0,
-			round : 0,
-			activePlayer: {},
-		}
+		super(props);
 		this.componentWillReceiveProps(props);
+
 		this.showActivePlayer = this.showActivePlayer.bind(this);
+		this.nextTurn = this.nextTurn.bind(this);
 	}
 
 	componentWillReceiveProps(props) {
 		this.state = {
 			sortedCharacters : props.sortedCharacters,
+			turn : 0,
+			round : 1,
+			activePlayer: props.sortedCharacters[0],
 		}
 	}
 
 	showActivePlayer() {
-		this.setState({activePlayer : this.sortedCharacters[this.turn]})
+		this.setState({activePlayer : this.state.sortedCharacters[this.state.turn]})
 	}
 
 	nextTurn() {
-		if (this.turn++ === this.sortedCharacters.length) {
-			this.round++;
-			this.turn = 0;
+		debugger;
+		if (this.state.turn + 1 === this.state.sortedCharacters.length) {
+			this.setState({
+				round : this.state.round+1,
+				turn : 0,
+			}, this.showActivePlayer);
 		} else {
-			this.turn++;
+			this.setState({turn : this.state.turn+1}, this.showActivePlayer);
 		}
-		this.showActivePlayer();
+		
 	}
 
 	render() {
-		debugger;
-		this.showActivePlayer();
 		return(
 			<div>
 				<div>
 					<ActivePlayer 
-						player = {this.activePlayer}
+						player = {this.state.activePlayer}
 					/>
+				</div>
+				<div>
+					Round: {this.state.round}
 				</div>
 				<div>
 					<button onClick={this.nextTurn}>Next Turn</button>
