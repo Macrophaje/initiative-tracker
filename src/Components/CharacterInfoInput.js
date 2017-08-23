@@ -29,8 +29,10 @@ class CharacterInfoInput extends React.Component {
 		}
 		
 		this.props.onSubmit(Object.assign({},this.state));
-		this.state.name = '';
-		this.state.modifier = 0;
+		this.setState({
+			name : '',
+			modifier : 0,
+		});
 	}
 	
 	render () {

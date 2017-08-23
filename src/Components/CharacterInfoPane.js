@@ -1,5 +1,5 @@
 import React from 'react';
-import CharacterInfoInput from './CharacterInfoInput.js';
+import CharacterInfoInput from './CharacterInfoInput';
 import CharacterInfoCard from './CharacterInfoCard';
 
 class CharacterInfoPane extends React.Component {

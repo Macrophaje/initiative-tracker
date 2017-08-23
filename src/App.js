@@ -23,7 +23,9 @@ class MainApp extends React.Component {
     for (var i = 0; i < this.state.characterData.length; i++) {
       var character = this.state.characterData[i];
       if (character.name === cardState.name) {
-        this.state.characterData[i] = cardState;
+        var temp = this.state.characterData.slice();
+        temp[i] = cardState;
+        this.setState({characterData : temp})
         matchFound = true;
       }
       if(matchFound) {
