@@ -30,6 +30,9 @@ class CharacterInfoCard extends React.Component {
 		}
 		
 		var initiative = mod + roll;
+		if (initiative < 0) {
+			initiative = 0
+		};
 		this.setState({
 			initiative:initiative}, 
 			function(){
