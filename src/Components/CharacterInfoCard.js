@@ -25,7 +25,7 @@ class CharacterInfoCard extends React.Component {
 		var mod = parseInt(this.state.modifier, 10);
 		var roll = parseInt(this.state.roll, 10);
 		//Don't allow user to submit an impossible roll
-		if(roll < 1 || roll > 20) {
+		if(roll < 1 || roll > 20 || "NaN") {
 			return;
 		}
 		

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/CharacterInfoPane.css';
 import CharacterInfoInput from './CharacterInfoInput';
 import CharacterInfoCard from './CharacterInfoCard';
 
@@ -50,10 +51,10 @@ class CharacterInfoPane extends React.Component {
 		
     	return (
 			<div>
-				<div>
+				<div >
 					{infoCards}
 				</div>
-				<div>
+				<div className='inputCardContainer'>
 					{this.renderInputCard()}
 				</div>
 				

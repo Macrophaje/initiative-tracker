@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/InputForm.css'
 
 //Component for user to define each character
 class CharacterInfoInput extends React.Component {
@@ -37,7 +38,7 @@ class CharacterInfoInput extends React.Component {
 	
 	render () {
 		return (
-			<form id="characterInput" ref="form" onSubmit={this.handleSubmit}>
+			<form id="characterInput" ref="form" onSubmit={this.handleSubmit} className='inputForm'>
 				Character Name: 
 				<input type="text" name="characterName" id="name" value = {this.state.name} onChange={this.handleChange}/><br/>
 				Initiative Modifer:
