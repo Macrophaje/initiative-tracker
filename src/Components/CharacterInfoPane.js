@@ -50,14 +50,16 @@ class CharacterInfoPane extends React.Component {
 		});
 		
     	return (
-			<div>
+			<div className="characterInfoPane">
 				<div >
 					{infoCards}
 				</div>
-				<div className='inputCardContainer'>
+				<div >
 					{this.renderInputCard()}
 				</div>
-				
+				<div className="startCombatButton">
+					<button onClick={this.props.determineCombatOrder}>Start Combat</button>
+				</div>
 			</div>
     	);
   	}

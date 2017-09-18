@@ -1,5 +1,11 @@
-.characterInfo {
-  float: left;
+.toolsPane {
+	float: right;
+	display: inline-block;
+	width: 10vw;
+}
+
+.appContainer {
+	text-align: center;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -10,4 +16,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 input {
   border-radius: 5px;
+}
+
+body {
+	margin: 0;
+}
+
+.comabatOrderPaneContainer {
+	display: inline-block;
 }

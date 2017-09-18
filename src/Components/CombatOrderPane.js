@@ -1,5 +1,6 @@
 import React from 'react';
 import ActivePlayer from './ActivePlayer';
+import '../Styles/CombatOrderPane.css'
 
 class CombatOrderPane extends React.Component {
 	constructor(props){
@@ -24,7 +25,6 @@ class CombatOrderPane extends React.Component {
 	}
 
 	nextTurn() {
-		debugger;
 		if (this.state.turn + 1 === this.state.sortedCharacters.length) {
 			this.setState({
 				round : this.state.round+1,
@@ -38,17 +38,18 @@ class CombatOrderPane extends React.Component {
 
 	render() {
 		return(
-			<div>
+			<div className="combatOrderPane">
+				<div>
+					Round: {this.state.round}
+				</div>
 				<div>
 					<ActivePlayer 
 						player = {this.state.activePlayer}
 					/>
 				</div>
 				<div>
-					Round: {this.state.round}
-				</div>
-				<div>
 					<button onClick={this.nextTurn}>Next Turn</button>
+					<button onClick={this.props.endCombat}>End Combat</button>
 				</div>
 			</div>
 		);

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Styles/InputForm.css'
+import '../Styles/CharacterInfoInput.css'
 
 //Component for user to define each character
 class CharacterInfoInput extends React.Component {
@@ -38,13 +38,15 @@ class CharacterInfoInput extends React.Component {
 	
 	render () {
 		return (
-			<form id="characterInput" ref="form" onSubmit={this.handleSubmit} className='inputForm'>
-				Character Name: 
-				<input type="text" name="characterName" id="name" value = {this.state.name} onChange={this.handleChange}/><br/>
-				Initiative Modifer:
-				<input type="number" name="initiativeModifer" id="modifier" value= {this.state.modifier} onChange={this.handleChange}/><br/>
-				<input type="submit" value="OK"/>
-			</form>
+			<div className='inputCardContainer'>
+				<form id="characterInput" ref="form" onSubmit={this.handleSubmit} className='inputForm'>
+					Character Name: 
+					<input type="text" name="characterName" id="name" value = {this.state.name} onChange={this.handleChange}/><br/>
+					Initiative Modifer:
+					<input type="number" name="initiativeModifer" id="modifier" value= {this.state.modifier} onChange={this.handleChange}/><br/>
+					<input type="submit" value="Add"/>
+				</form>
+			</div>
 		);
 	}
 }

@@ -74,6 +74,7 @@ class MainApp extends React.Component {
       return (
           <CombatOrderPane 
             sortedCharacters = {this.state.sortedCharacters}
+            endCombat = {this.endCombat}
           />
       )
     }
@@ -87,19 +88,22 @@ class MainApp extends React.Component {
   
   render() {
     return (
-      <div className="container">
-        <div className="characterInfo">
+      <div className="appContainer">
+        <div className="header">
+
+        </div>
+        <div className="characterInfoPaneContainer">
           <CharacterInfoPane 
             characterData = {this.state.characterData}
             handleChange = {this.handleChange}
+            determineCombatOrder = {this.determineCombatOrder}
           />
         </div>
-        <div className="controlButtons">
-          <button onClick={this.determineCombatOrder}>Start Combat</button>
-          <button onClick={this.endCombat}>End Combat</button>
-        </div>
-        <div className="combatOrder">
+        <div className="comabatOrderPaneContainer">
           {this.renderCombatPane()}
+        </div>
+        <div className="toolsPane">
+          Test
         </div>
       </div>
     )

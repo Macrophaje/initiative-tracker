@@ -1,7 +1,10 @@
-
-.inputCardContainer {
+.characterInfoPane {
+  float: left;
   display: inline-block;
-  border: 1px solid black;
-  background-color: #f4d89f;
-  padding: 3px;
+  width: 20vw;
+  border-right: 2px solid black;
+  height: calc(100vh - 20px);
+  padding: 10px;
+  text-align: center;
 }
+

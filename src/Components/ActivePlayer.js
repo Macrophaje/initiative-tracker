@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/ActivePlayer.css'
 
 class ActivePlayer extends React.Component {
 	constructor(props) {
@@ -18,7 +19,7 @@ class ActivePlayer extends React.Component {
 
 	render(){
 		return (
-			<div>
+			<div className="activePlayer">
 				<p>Name:{this.state.name}</p>
 				<p>Initiative:{this.state.initiative}</p>
 			</div>

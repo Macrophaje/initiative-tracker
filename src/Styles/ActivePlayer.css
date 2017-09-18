@@ -1,0 +1,6 @@
+.activePlayer {
+	width: auto;
+	border: 1px solid;
+	border-radius: 5px;
+	height: 100px;
+}
