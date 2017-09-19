@@ -1,0 +1,10 @@
+.characterInfoPane {
+  float: left;
+  display: inline-block;
+  width: 20vw;
+  border-right: 2px solid black;
+  height: calc(100vh - 20px);
+  padding: 10px;
+  text-align: center;
+}
+

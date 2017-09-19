@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/CharacterInfoCard.css';
 
 //Displays the details of a character, allows the user to enter their roll and calculates final initiative
 class CharacterInfoCard extends React.Component {
@@ -25,7 +26,7 @@ class CharacterInfoCard extends React.Component {
 		var mod = parseInt(this.state.modifier, 10);
 		var roll = parseInt(this.state.roll, 10);
 		//Don't allow user to submit an impossible roll
-		if(roll < 1 || roll > 20) {
+		if(roll < 1 || roll > 20 || isNaN(roll)) {
 			return;
 		}
 		
@@ -48,7 +49,7 @@ class CharacterInfoCard extends React.Component {
 	
 	render(){
 		return(
-			<div>
+			<div className="characterInfoCard">
 				<p>Name: {this.state.name}</p>
 				<p>Initiative Modifier: {this.state.modifier}</p>
 				Roll:
