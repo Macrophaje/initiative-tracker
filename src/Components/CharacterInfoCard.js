@@ -23,7 +23,6 @@ class CharacterInfoCard extends React.Component {
 	
 	//Calculates the final initiative
 	handleClick() {
-		debugger;
 		var mod = parseInt(this.state.modifier, 10);
 		var roll = parseInt(this.state.roll, 10);
 		//Don't allow user to submit an impossible roll
