@@ -48,6 +48,7 @@ class CharacterInfoCard extends React.Component {
 		this.props.handleChange(this.state);
 	}
 
+	//Notifies the parent component to remove this component
 	removeCharacter(){
 		this.props.removeCharacter(this.state);
 	}

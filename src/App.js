@@ -15,6 +15,7 @@ class MainApp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.determineCombatOrder = this.determineCombatOrder.bind(this);
     this.endCombat = this.endCombat.bind(this);
+    this.removeCharacter = this.removeCharacter.bind(this);
   }
   
   //Handles all character data changes 
@@ -69,6 +70,17 @@ class MainApp extends React.Component {
     return sortedCharacters.sort(compareInitiative);  
   }
 
+  removeCharacter(target) {
+      for(var i = 0; i < this.state.characterData.length; i++) {
+        var character = this.state.characterData[i];
+        if (character.name === target.name && character.modifier === target.modifier) {
+          var temp = this.state.characterData.slice();
+          temp.splice(i,1);
+          this.setState({characterData : temp})
+        }
+      }
+  }
+
   renderCombatPane() {
     if (this.state.renderCombat) {
       return (
@@ -97,6 +109,7 @@ class MainApp extends React.Component {
             characterData = {this.state.characterData}
             handleChange = {this.handleChange}
             determineCombatOrder = {this.determineCombatOrder}
+            removeCharacter = {this.removeCharacter}
           />
         </div>
         <div className="comabatOrderPaneContainer">
