@@ -9,6 +9,7 @@ class CharacterInfoPane extends React.Component {
 	this.componentWillReceiveProps(props)
 	this.handleSubmit = this.handleSubmit.bind(this);
 	this.handleChange = this.handleChange.bind(this);
+	this.removeCharacter = this.removeCharacter.bind(this);
   }
 	
 	componentWillReceiveProps(props) {
@@ -35,6 +36,22 @@ class CharacterInfoPane extends React.Component {
       		/>
     	)
   	}
+
+  	removeCharacter(target) {
+  		var changed = false;
+  		for(var i = 0; i < this.state.characterData.length; i++) {
+  			var character = this.state.characterData[i];
+  			if (character.name === target.name && character.modifier === target.modifier) {
+  				var temp = this.state.characterData.slice();
+  				temp.splice(i,1);
+  				this.setState({characterData : temp})
+  				changed = true;
+  			}
+  		}
+  		if (changed) {
+  			this.handleChange(this.state);
+  		}
+  	}
   
   	render() {
 	//Renders the Info card from the state
@@ -45,6 +62,7 @@ class CharacterInfoPane extends React.Component {
 					modifier = {character.modifier}
 					handleChange = {this.handleChange}
 					key = {character.name}
+					removeCharacter = {this.removeCharacter}
 				/>
 			);
 		});

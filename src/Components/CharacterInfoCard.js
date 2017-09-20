@@ -14,6 +14,7 @@ class CharacterInfoCard extends React.Component {
 		
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
+		this.removeCharacter = this.removeCharacter.bind(this);
 	}
 	
 	//Updates the state of the cmp as the Roll field is edited
@@ -46,17 +47,27 @@ class CharacterInfoCard extends React.Component {
 	submitInitiative() {
 		this.props.handleChange(this.state);
 	}
+
+	removeCharacter(){
+		this.props.removeCharacter(this.state);
+	}
 	
 	render(){
 		return(
 			<div className="characterInfoCard">
-				<p>Name: {this.state.name}</p>
-				<p>Initiative Modifier: {this.state.modifier}</p>
-				Roll:
-				<input type="number" name="initiativeRoll" onChange= {this.handleChange} />
-				<button type="button" onClick= {this.handleClick}>OK</button>
-				<p>Initiative: {this.state.initiative}</p>
+				<div>
+					<p>Name: {this.state.name}</p>
+					<p>Initiative Modifier: {this.state.modifier}</p>
+					Roll:
+					<input type="number" name="initiativeRoll" onChange= {this.handleChange} />
+					<button type="button" onClick= {this.handleClick}>OK</button>
+					<p>Initiative: {this.state.initiative}</p>
+				</div>
+				<div>
+					<button type="button" onClick={this.removeCharacter}>X</button>
+				</div>
 			</div>
+			
 		);
 	}
 }
