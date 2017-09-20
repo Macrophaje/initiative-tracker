@@ -42,7 +42,7 @@ class CharacterInfoInput extends React.Component {
 				<form id="characterInput" ref="form" onSubmit={this.handleSubmit} className='inputForm'>
 					Character Name: 
 					<input type="text" name="characterName" id="name" value = {this.state.name} onChange={this.handleChange}/><br/>
-					Initiative Modifer:
+					Initiative Modifier:
 					<input type="number" name="initiativeModifer" id="modifier" value= {this.state.modifier} onChange={this.handleChange}/><br/>
 					<input type="submit" value="Add"/>
 				</form>
