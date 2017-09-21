@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CharacterInfoPane from './Components/CharacterInfoPane.js';
 import CombatOrderPane from './Components/CombatOrderPane.js';
+import ToolsPane from './Components/ToolsPane.js';
 
 class MainApp extends React.Component {
   constructor(){
@@ -116,7 +117,7 @@ class MainApp extends React.Component {
           {this.renderCombatPane()}
         </div>
         <div className="toolsPane">
-          Test
+          <ToolsPane />
         </div>
       </div>
     )

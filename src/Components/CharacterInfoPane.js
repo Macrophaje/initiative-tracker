@@ -4,13 +4,13 @@ import CharacterInfoInput from './CharacterInfoInput';
 import CharacterInfoCard from './CharacterInfoCard';
 
 class CharacterInfoPane extends React.Component {
-  constructor(props){
-    super(props);
-	this.componentWillReceiveProps(props)
-	this.handleSubmit = this.handleSubmit.bind(this);
-	this.handleChange = this.handleChange.bind(this);
-	this.removeCharacter = this.removeCharacter.bind(this);
-  }
+	constructor(props){
+	    super(props);
+		this.componentWillReceiveProps(props)
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.removeCharacter = this.removeCharacter.bind(this);
+	}
 	
 	componentWillReceiveProps(props) {
 			
