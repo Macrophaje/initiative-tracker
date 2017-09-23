@@ -27,13 +27,7 @@ class CharacterInfoPane extends React.Component {
 	}
 
 	//Render the input cards
-  	renderInputCard() {		
-    	return (
-      		<CharacterInfoInput
-        		onSubmit = {this.handleSubmit}
-      		/>
-    	)
-  	}
+  	
 
   	//Passes the character to be removed to the parent component
   	removeCharacter(target) {
@@ -60,7 +54,9 @@ class CharacterInfoPane extends React.Component {
 					{infoCards}
 				</div>
 				<div >
-					{this.renderInputCard()}
+					<CharacterInfoInput
+        				onSubmit = {this.handleSubmit}
+      				/>
 				</div>
 				<div className="startCombatButton">
 					<button onClick={this.props.determineCombatOrder}>Start Combat</button>

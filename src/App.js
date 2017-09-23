@@ -11,12 +11,14 @@ class MainApp extends React.Component {
       characterData : [],
       sortedCharacters : [],
       renderCombat : false,
+      toolData : [],
     }
     
     this.handleChange = this.handleChange.bind(this);
     this.determineCombatOrder = this.determineCombatOrder.bind(this);
     this.endCombat = this.endCombat.bind(this);
     this.removeCharacter = this.removeCharacter.bind(this);
+    this.addToCombat = this.addToCombat.bind(this);
   }
   
   //Handles all character data changes 
@@ -88,9 +90,17 @@ class MainApp extends React.Component {
           <CombatOrderPane 
             sortedCharacters = {this.state.sortedCharacters}
             endCombat = {this.endCombat}
+            toolData = {this.state.toolData}
           />
       )
     }
+  }
+
+  addToCombat(data) {
+    var temp = [];
+    temp = this.state.toolData.slice();
+    temp.push(data);
+    this.setState({toolData : temp});
   }
 
   endCombat() {
@@ -117,7 +127,9 @@ class MainApp extends React.Component {
           {this.renderCombatPane()}
         </div>
         <div className="toolsPane">
-          <ToolsPane />
+          <ToolsPane
+            onSubmit = {this.addToCombat}
+          />
         </div>
       </div>
     )

@@ -1,5 +1,6 @@
 import React from 'react';
 import ActivePlayer from './ActivePlayer';
+import MultiRoundEffect from './ActivePlayer';
 import '../Styles/CombatOrderPane.css'
 
 class CombatOrderPane extends React.Component {
@@ -18,6 +19,7 @@ class CombatOrderPane extends React.Component {
 			round : 1,
 			activePlayer: props.sortedCharacters[0],
 		}
+
 	}
 
 	showActivePlayer() {
@@ -37,10 +39,23 @@ class CombatOrderPane extends React.Component {
 	}
 
 	render() {
+		const multiEffectCards = this.props.toolData.map((data) => {
+			return (
+				<MultiRoundEffect 
+					details = {data}
+					round = {1}
+					key = {data.multi.effectName}
+				/>
+			);
+		});
+
 		return(
 			<div className="combatOrderPane">
 				<div>
 					Round: {this.state.round}
+				</div>
+				<div>
+					{multiEffectCards}
 				</div>
 				<div>
 					<ActivePlayer 
