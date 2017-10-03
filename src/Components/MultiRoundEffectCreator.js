@@ -6,6 +6,7 @@ class MultiRoundEffectCreator extends React.Component {
 		this.state = {
 			effectName : '',
 			roundValue : 1,
+			toolName : 'multi',
 		}
 
 		this.handleChange = this.handleChange.bind(this);

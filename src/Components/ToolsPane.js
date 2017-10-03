@@ -3,12 +3,8 @@ import MultiRoundEffectCreator from './MultiRoundEffectCreator'
 
 class ToolsPane extends React.Component {
 
-	handleSubmit(data, toolname){
-
-		var wrappedData = {	};
-		wrappedData[toolname] = data;
-
-		this.props.onSubmit(wrappedData);
+	handleSubmit(data){
+		this.props.onSubmit(data);
 	}
 
 	render() {
@@ -17,7 +13,7 @@ class ToolsPane extends React.Component {
 				<div className="multiRoundEffectCreatorContainter">
 					<MultiRoundEffectCreator 
 						onSubmit = {(data) => {
-							this.handleSubmit(data, "multi")
+							this.handleSubmit(data)
 						}}
 					/>
 				</div>
