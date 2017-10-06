@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Styles/MultiRoundEffectCreator.css'
 
 class MultiRoundEffectCreator extends React.Component {
 	constructor() {
@@ -38,8 +39,8 @@ class MultiRoundEffectCreator extends React.Component {
 	
 	render() {
 		return (
-			<div>
-				<h3>Add Multi-round Effect</h3>
+			<div className="multiRoundEffectCreator">
+				<h4>Add Multi-round Effect</h4>
 				<form id="effectInfoInputForm" ref="form" onSubmit={this.handleSubmit}>
 					Effect Name: 
 					<input type="text" name="effectName" id="effectName" value={this.state.effectName} onChange={this.handleChange}/><br/>

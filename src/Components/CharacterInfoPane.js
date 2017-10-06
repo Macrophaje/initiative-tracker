@@ -50,6 +50,7 @@ class CharacterInfoPane extends React.Component {
 		
     	return (
 			<div className="characterInfoPane">
+				<h3><b>Characters</b></h3>
 				<div >
 					{infoCards}
 				</div>

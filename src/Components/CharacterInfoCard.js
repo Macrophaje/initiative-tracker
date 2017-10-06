@@ -23,7 +23,9 @@ class CharacterInfoCard extends React.Component {
 	}
 	
 	//Calculates the final initiative
-	handleClick() {
+	handleClick(event) {
+		event.preventDefault();
+
 		var mod = parseInt(this.state.modifier, 10);
 		var roll = parseInt(this.state.roll, 10);
 		//Don't allow user to submit an impossible roll
@@ -59,9 +61,10 @@ class CharacterInfoCard extends React.Component {
 				<div>
 					<p>Name: {this.state.name}</p>
 					<p>Initiative Modifier: {this.state.modifier}</p>
-					Roll:
-					<input type="number" name="initiativeRoll" onChange= {this.handleChange} />
-					<button type="button" onClick= {this.handleClick}>OK</button>
+					<form onSubmit={this.handleClick}>
+						Roll:<input type="number" name="initiativeRoll" onChange= {this.handleChange} />
+						<input type="submit" value="OK" />
+					</form>
 					<p>Initiative: {this.state.initiative}</p>
 				</div>
 				<div>

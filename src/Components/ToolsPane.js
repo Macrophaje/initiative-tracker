@@ -1,5 +1,6 @@
 import React from 'react'
 import MultiRoundEffectCreator from './MultiRoundEffectCreator'
+import '../Styles/ToolsPane.css'
 
 class ToolsPane extends React.Component {
 
@@ -10,6 +11,7 @@ class ToolsPane extends React.Component {
 	render() {
 		return (
 			<div className="toolsPane">
+				<h3><b>Tools</b></h3>
 				<div className="multiRoundEffectCreatorContainter">
 					<MultiRoundEffectCreator 
 						onSubmit = {(data) => {

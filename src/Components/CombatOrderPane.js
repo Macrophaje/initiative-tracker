@@ -12,17 +12,9 @@ class CombatOrderPane extends React.Component {
 			activePlayer: props.sortedCharacters[0],
 		}
 
-		this.showActivePlayer = this.showActivePlayer.bind(this);
 		this.nextTurn = this.nextTurn.bind(this);
-		this.removeToolFromCombat = this.removeToolFromCombat.bind(this);
-	}
-
-	componentWillReceiveProps(props) {
-		
-	}
-
-	showActivePlayer() {
-		this.setState({activePlayer : this.props.sortedCharacters[this.state.turn]})
+		this.showActivePlayer = this.showActivePlayer.bind(this);
+		this.updateRemainingRounds = this.updateRemainingRounds.bind(this);
 	}
 
 	nextTurn() {
@@ -30,15 +22,32 @@ class CombatOrderPane extends React.Component {
 			this.setState({
 				round : this.state.round+1,
 				turn : 0,
-			}, this.showActivePlayer);
+			}, this.triggerNextRound);
 		} else {
 			this.setState({turn : this.state.turn+1}, this.showActivePlayer);
 		}
 		
 	}
 
-	removeToolFromCombat(name) {
-		this.props.removeToolFromCombat(name);
+	showActivePlayer() {
+		this.setState({activePlayer : this.props.sortedCharacters[this.state.turn]})
+	}
+
+	triggerNextRound() {
+		this.showActivePlayer();
+		if (this.props.toolData.length >= 1) {
+			this.updateRemainingRounds();
+		}
+	}
+
+	updateRemainingRounds(){
+		var newToolData = this.props.toolData.filter(function(tool) {
+			return (tool.roundValue - 1 > 0);
+		});
+		newToolData.forEach(function(tool){
+			tool.roundValue -= 1;
+		});
+		this.props.updateToolData(newToolData);
 	}
 
 	render() {
@@ -57,21 +66,19 @@ class CombatOrderPane extends React.Component {
 			}	
 		});
 
-		const activePlayer = 
-			<ActivePlayer 
-				player = {this.state.activePlayer}
-			/>;
-
 		return(
 			<div className="combatOrderPane">
+				<h2><b>Battle!</b></h2>
 				<div>
 					Round: {this.state.round}
 				</div>
-				<div>
+				<div className="MultiRoundEffectContainer">
 					{multiEffectCards}
 				</div>
 				<div>
-					{activePlayer}
+					<ActivePlayer 
+						player = {this.state.activePlayer}
+					/>
 				</div>
 				<div>
 					<button onClick={this.nextTurn}>Next Turn</button>

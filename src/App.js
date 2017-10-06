@@ -16,10 +16,10 @@ class MainApp extends React.Component {
     
     this.handleChange = this.handleChange.bind(this);
     this.determineCombatOrder = this.determineCombatOrder.bind(this);
-    this.endCombat = this.endCombat.bind(this);
     this.removeCharacter = this.removeCharacter.bind(this);
     this.addToolToCombat = this.addToolToCombat.bind(this);
-    this.removeToolFromCombat = this.removeToolFromCombat.bind(this);
+    this.updateToolData = this.updateToolData.bind(this);
+    this.endCombat = this.endCombat.bind(this);
   }
   
   //Handles all character data changes 
@@ -86,22 +86,17 @@ class MainApp extends React.Component {
   }
 
   addToolToCombat(data) {
-    var temp = [];
-    temp = this.state.toolData.slice();
-    data["key"] = Date.now();
-    temp.push(data);
-    this.setState({toolData : temp});
+    if (this.state.renderCombat === true) {
+      var temp = [];
+      temp = this.state.toolData.slice();
+      data["key"] = Date.now();
+      temp.push(data);
+      this.setState({toolData : temp});
+    }
   }
 
-  removeToolFromCombat(target) {
-    for(var i = 0; i < this.state.toolData.length; i++) {
-      var thisTool = this.state.toolData[i];
-      if(thisTool.effectName === target.effectName && thisTool.key === target.key) {
-        var temp = this.state.toolData.slice();
-        temp.splice(i,1);
-        this.setState({toolData : temp});
-      }
-    }
+  updateToolData(newToolData) {
+    this.setState({toolData: newToolData});
   }
 
   renderCombatPane() {
@@ -111,13 +106,11 @@ class MainApp extends React.Component {
             sortedCharacters = {this.state.sortedCharacters}
             endCombat = {this.endCombat}
             toolData = {this.state.toolData}
-            removeToolFromCombat = {this.removeToolFromCombat}
+            updateToolData = {this.updateToolData}
           />
       )
     }
   }
-
-
 
   endCombat() {
     if(this.state.renderCombat) {

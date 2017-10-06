@@ -1,0 +1,13 @@
+.multiRoundEffect {
+	width: auto;
+	border: 1px solid;
+	border-radius: 5px;
+	height: auto;
+	margin: 20px;
+	display: inline-block;
+	background-color: #ffffff;
+}
+
+.multiRoundEffect p{
+	margin: 3px;
+}
