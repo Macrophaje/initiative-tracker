@@ -4,13 +4,13 @@ import CharacterInfoInput from './CharacterInfoInput';
 import CharacterInfoCard from './CharacterInfoCard';
 
 class CharacterInfoPane extends React.Component {
-  constructor(props){
-    super(props);
-	this.componentWillReceiveProps(props)
-	this.handleSubmit = this.handleSubmit.bind(this);
-	this.handleChange = this.handleChange.bind(this);
-	this.removeCharacter = this.removeCharacter.bind(this);
-  }
+	constructor(props){
+	    super(props);
+		this.componentWillReceiveProps(props)
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.removeCharacter = this.removeCharacter.bind(this);
+	}
 	
 	componentWillReceiveProps(props) {
 			
@@ -27,13 +27,7 @@ class CharacterInfoPane extends React.Component {
 	}
 
 	//Render the input cards
-  	renderInputCard() {		
-    	return (
-      		<CharacterInfoInput
-        		onSubmit = {this.handleSubmit}
-      		/>
-    	)
-  	}
+  	
 
   	//Passes the character to be removed to the parent component
   	removeCharacter(target) {
@@ -56,11 +50,14 @@ class CharacterInfoPane extends React.Component {
 		
     	return (
 			<div className="characterInfoPane">
+				<h3><b>Characters</b></h3>
 				<div >
 					{infoCards}
 				</div>
 				<div >
-					{this.renderInputCard()}
+					<CharacterInfoInput
+        				onSubmit = {this.handleSubmit}
+      				/>
 				</div>
 				<div className="startCombatButton">
 					<button onClick={this.props.determineCombatOrder}>Start Combat</button>

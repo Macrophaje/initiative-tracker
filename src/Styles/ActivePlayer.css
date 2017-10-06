@@ -1,7 +1,9 @@
 .activePlayer {
-	width: auto;
+	width: 150px;
 	border: 1px solid;
 	border-radius: 5px;
 	height: 100px;
 	margin-top: 20px;
+	text-align: center;
+	margin: auto;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CharacterInfoPane from './Components/CharacterInfoPane.js';
 import CombatOrderPane from './Components/CombatOrderPane.js';
+import ToolsPane from './Components/ToolsPane.js';
 
 class MainApp extends React.Component {
   constructor(){
@@ -10,12 +11,15 @@ class MainApp extends React.Component {
       characterData : [],
       sortedCharacters : [],
       renderCombat : false,
+      toolData : [],
     }
     
     this.handleChange = this.handleChange.bind(this);
     this.determineCombatOrder = this.determineCombatOrder.bind(this);
-    this.endCombat = this.endCombat.bind(this);
     this.removeCharacter = this.removeCharacter.bind(this);
+    this.addToolToCombat = this.addToolToCombat.bind(this);
+    this.updateToolData = this.updateToolData.bind(this);
+    this.endCombat = this.endCombat.bind(this);
   }
   
   //Handles all character data changes 
@@ -76,9 +80,23 @@ class MainApp extends React.Component {
         if (character.name === target.name && character.modifier === target.modifier) {
           var temp = this.state.characterData.slice();
           temp.splice(i,1);
-          this.setState({characterData : temp})
+          this.setState({characterData : temp});
         }
       }
+  }
+
+  addToolToCombat(data) {
+    if (this.state.renderCombat === true) {
+      var temp = [];
+      temp = this.state.toolData.slice();
+      data["key"] = Date.now();
+      temp.push(data);
+      this.setState({toolData : temp});
+    }
+  }
+
+  updateToolData(newToolData) {
+    this.setState({toolData: newToolData});
   }
 
   renderCombatPane() {
@@ -87,6 +105,8 @@ class MainApp extends React.Component {
           <CombatOrderPane 
             sortedCharacters = {this.state.sortedCharacters}
             endCombat = {this.endCombat}
+            toolData = {this.state.toolData}
+            updateToolData = {this.updateToolData}
           />
       )
     }
@@ -116,7 +136,9 @@ class MainApp extends React.Component {
           {this.renderCombatPane()}
         </div>
         <div className="toolsPane">
-          Test
+          <ToolsPane
+            onSubmit = {this.addToolToCombat}
+          />
         </div>
       </div>
     )
