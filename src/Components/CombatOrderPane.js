@@ -15,6 +15,7 @@ class CombatOrderPane extends React.Component {
 		this.nextTurn = this.nextTurn.bind(this);
 		this.showActivePlayer = this.showActivePlayer.bind(this);
 		this.updateRemainingRounds = this.updateRemainingRounds.bind(this);
+		this.resortPlayers = this.resortPlayers.bind(this);
 	}
 
 	nextTurn() {
@@ -31,6 +32,12 @@ class CombatOrderPane extends React.Component {
 
 	showActivePlayer() {
 		this.setState({activePlayer : this.props.sortedCharacters[this.state.turn]})
+	}
+
+	resortPlayers() {
+		debugger;
+		this.props.determineCombatOrder();
+		this.showActivePlayer();
 	}
 
 	triggerNextRound() {
@@ -71,6 +78,8 @@ class CombatOrderPane extends React.Component {
 				<h2><b>Battle!</b></h2>
 				<div>
 					Round: {this.state.round}
+					&nbsp;&nbsp;&nbsp;   
+					Turn: {this.state.turn + 1}
 				</div>
 				<div className="MultiRoundEffectContainer">
 					{multiEffectCards}
@@ -82,6 +91,7 @@ class CombatOrderPane extends React.Component {
 				</div>
 				<div>
 					<button onClick={this.nextTurn}>Next Turn</button>
+					<button onClick={this.resortPlayers}>Resort Players</button>
 					<button onClick={this.props.endCombat}>End Combat</button>
 				</div>
 			</div>

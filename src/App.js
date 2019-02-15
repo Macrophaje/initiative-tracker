@@ -15,6 +15,7 @@ class MainApp extends React.Component {
     }
     
     this.handleChange = this.handleChange.bind(this);
+    this.startCombat = this.startCombat.bind(this);
     this.determineCombatOrder = this.determineCombatOrder.bind(this);
     this.removeCharacter = this.removeCharacter.bind(this);
     this.addToolToCombat = this.addToolToCombat.bind(this);
@@ -44,14 +45,23 @@ class MainApp extends React.Component {
     }
   }
 
+  startCombat() {
+    if (this.state.characterData.length < 1 || this.renderCombat === true) {
+      return;
+    }
+    this.determineCombatOrder();
+    this.setState ({
+      renderCombat : true
+    });
+  }
+
   determineCombatOrder(){
-    if (this.state.characterData.length < 1 || this.state.renderCombat === true) {
+    if (this.state.characterData.length < 1) {
       return;
     }
     var sortedCharacters = this.sortCharacters(this.state.characterData);
     this.setState({
       sortedCharacters : sortedCharacters,
-      renderCombat : true,
     });
   }
 
@@ -107,6 +117,7 @@ class MainApp extends React.Component {
             endCombat = {this.endCombat}
             toolData = {this.state.toolData}
             updateToolData = {this.updateToolData}
+            determineCombatOrder = {this.determineCombatOrder}
           />
       )
     }
@@ -115,6 +126,7 @@ class MainApp extends React.Component {
   endCombat() {
     if(this.state.renderCombat) {
       this.setState({renderCombat : false});
+      this.updateToolData([]);
     } 
   }
   
@@ -128,7 +140,7 @@ class MainApp extends React.Component {
           <CharacterInfoPane 
             characterData = {this.state.characterData}
             handleChange = {this.handleChange}
-            determineCombatOrder = {this.determineCombatOrder}
+            startCombat = {this.startCombat}
             removeCharacter = {this.removeCharacter}
           />
         </div>

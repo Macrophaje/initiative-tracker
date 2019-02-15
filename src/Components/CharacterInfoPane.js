@@ -60,7 +60,7 @@ class CharacterInfoPane extends React.Component {
       				/>
 				</div>
 				<div className="startCombatButton">
-					<button onClick={this.props.determineCombatOrder}>Start Combat</button>
+					<button onClick={this.props.startCombat}>Start Combat</button>
 				</div>
 			</div>
     	);
